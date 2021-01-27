@@ -14,6 +14,7 @@ namespace Task2
 			Console.WriteLine("Hello. It's small notepad.");
 			while (true)
 			{
+				Console.ForegroundColor = ConsoleColor.DarkGreen;
 				Console.WriteLine($"\n" +
 				$"========= MENU ==========\n" +
 				$"View notepad	- press 1\n" +
@@ -23,10 +24,13 @@ namespace Task2
 				$"Exit notepad	- press 0\n" +
 				$"=========================\n" +
 				$"Please select:");
+				Console.ResetColor();
 
 				while (!int.TryParse(Console.ReadLine(), out select) || select < 0 || select > 4)
 				{
+					Console.ForegroundColor = ConsoleColor.DarkRed;
 					Console.WriteLine("Please select number from menu");
+					Console.ResetColor();
 				}
 				switch (select)
 				{
@@ -34,7 +38,9 @@ namespace Task2
 						{
 							if (count == 0)
 							{
+								Console.ForegroundColor = ConsoleColor.DarkYellow;
 								Console.WriteLine("You don't have any records");
+								Console.ResetColor();
 							}
 							else
 							{
@@ -52,7 +58,9 @@ namespace Task2
 						{
 							if (count > 5)
 							{
+							
 								Console.WriteLine("Notepad is full. Please delete something.");
+								Console.ResetColor();
 								break;
 							}
 							Console.WriteLine("Please enter name:");
@@ -70,7 +78,9 @@ namespace Task2
 						{
 							if (count != 0)
 							{
+								
 								Console.WriteLine("Please enter the name to be deleted:");
+
 								Name = Console.ReadLine();
 								for (int i = 0; i < count; i++)
 								{
@@ -102,7 +112,9 @@ namespace Task2
 							}
 							else
 							{
+								Console.ForegroundColor = ConsoleColor.DarkYellow;
 								Console.WriteLine("Notepad is empty. Nothing to delete.");
+								Console.ResetColor();
 								break;
 							}
 						}
@@ -132,13 +144,17 @@ namespace Task2
 							}
 							else
 							{
+								Console.ForegroundColor = ConsoleColor.DarkYellow;
 								Console.WriteLine("Notepad is empty. Nothing to change.");
+								Console.ResetColor();
 								break;
 							}
 						}
 					case 0:
 						{
+							Console.ForegroundColor = ConsoleColor.Green;
 							Console.WriteLine("Goodbay. Press any key to end programm.");
+							Console.ResetColor();
 							Console.ReadKey();
 							return;
 						}
