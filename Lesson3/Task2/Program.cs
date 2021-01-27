@@ -68,10 +68,10 @@ namespace Task2
 						}
 					case 3:
 						{
-							Console.WriteLine("Please enter the name to be deleted:");
-							Name = Console.ReadLine();
 							if (count != 0)
 							{
+								Console.WriteLine("Please enter the name to be deleted:");
+								Name = Console.ReadLine();
 								for (int i = 0; i < count; i++)
 								{
 									if (Note[i, 0] == Name)
@@ -108,10 +108,10 @@ namespace Task2
 						}
 					case 4:
 						{
-							Console.WriteLine("Please enter the name to be changed:");
-							Name = Console.ReadLine();
 							if (count != 0)
 							{
+								Console.WriteLine("Please enter the name to be changed:");
+								Name = Console.ReadLine();
 								for (int i = 0; i < count; i++)
 								{
 									if (Note[i, 0] == Name)
