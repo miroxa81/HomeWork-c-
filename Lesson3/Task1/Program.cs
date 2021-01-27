@@ -8,6 +8,7 @@ namespace ConsoleApp3
 			Random Digits = new Random();
 			int DiagonalSelection;
 			int DiagonalOffset;
+			int DiagSum=0;
 
 			Console.WriteLine("Please enter your name:");
 			string name = Console.ReadLine();
@@ -24,7 +25,7 @@ namespace ConsoleApp3
 
 			do
 			{
-				Console.WriteLine("Which diagonal to show? \n 1. main diagonal. \n 2. Side diagonal");
+				Console.WriteLine("Which diagonal to show? \n 1. Main diagonal. \n 2. Side diagonal");
 				DiagonalSelection = Convert.ToInt32(Console.ReadLine());
 
 				if (DiagonalSelection == 1 || DiagonalSelection == 2)
@@ -43,6 +44,7 @@ namespace ConsoleApp3
 					break;
 				}
 			} while (true);
+
 
 			int[,] Array = new int[ArrayWidth, ArrayHigth];
 
@@ -65,7 +67,7 @@ namespace ConsoleApp3
 							Console.ForegroundColor = ConsoleColor.Green;
 							if (Convert.ToString(Array[i, j]).Length == 1)
 							{
-								Console.Write($" {Array[i, j]} ");
+								Console.Write($"{Array[i, j],1} ");
 							}
 							else
 							{
@@ -77,6 +79,7 @@ namespace ConsoleApp3
 								Console.WriteLine("\n");
 							}
 							Console.ResetColor();
+							DiagSum += Array[i, j];
 							continue;
 						}
 					}
@@ -87,7 +90,7 @@ namespace ConsoleApp3
 							Console.ForegroundColor = ConsoleColor.Green;
 							if (Convert.ToString(Array[i, j]).Length == 1)
 							{
-								Console.Write($" {Array[i, j]} ");
+								Console.Write($"{Array[i, j],-1} ");
 							}
 							else
 							{
@@ -98,6 +101,7 @@ namespace ConsoleApp3
 								Console.WriteLine("\n");
 							}
 							Console.ResetColor();
+							DiagSum += Array[i, j];
 							continue;
 						}
 					}
@@ -116,7 +120,12 @@ namespace ConsoleApp3
 					}
 				}
 			}
+			Console.ForegroundColor = ConsoleColor.Yellow;
+			Console.WriteLine($"The sum of the numbers of the selected diagonal: {DiagSum}.");
+			Console.ForegroundColor = ConsoleColor.Green;
+			Console.WriteLine($"Press any key to end program.");
 			Console.ResetColor();
+
 			Console.ReadKey();
 		}
 	}

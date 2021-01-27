@@ -34,7 +34,7 @@ namespace Task2
 				}
 				switch (select)
 				{
-					case 1:
+					case 1: //вывод блокнта 
 						{
 							if (count == 0)
 							{
@@ -54,18 +54,18 @@ namespace Task2
 							}
 							break;
 						}
-					case 2:
+					case 2: //добавление 
 						{
 							if (count > 5)
 							{
-							
+
 								Console.WriteLine("Notepad is full. Please delete something.");
 								Console.ResetColor();
 								break;
 							}
 							Console.WriteLine("Please enter name:");
 							Name = Console.ReadLine();
-							Console.WriteLine("Please enter phone number:");                            //String.Format("{0:+# (###) ###-##-##}", number);
+							Console.WriteLine("Please enter phone number:");
 							PhoneNum = Console.ReadLine();
 							Console.WriteLine("Please enter e-mail:");
 							Mail = Console.ReadLine();
@@ -74,12 +74,16 @@ namespace Task2
 							count++;
 							break;
 						}
-					case 3:
+					case 3: //удаление 
 						{
 							if (count != 0)
 							{
-								
+
 								Console.WriteLine("Please enter the name to be deleted:");
+								for (int i = 0; i < count; i++)
+								{
+									Console.WriteLine($"{Note[i, 0]}");
+								}
 
 								Name = Console.ReadLine();
 								for (int i = 0; i < count; i++)
@@ -118,11 +122,16 @@ namespace Task2
 								break;
 							}
 						}
-					case 4:
+					case 4: //изменение записи
 						{
 							if (count != 0)
 							{
 								Console.WriteLine("Please enter the name to be changed:");
+								for (int i = 0; i < count; i++)
+								{
+									Console.WriteLine($"{Note[i, 0]}");
+								}
+
 								Name = Console.ReadLine();
 								for (int i = 0; i < count; i++)
 								{
@@ -130,7 +139,7 @@ namespace Task2
 									{
 										Console.WriteLine("Please enter new name:");
 										Name = Console.ReadLine();
-										Console.WriteLine("Please enter new phone number:");                            //String.Format("{0:+# (###) ###-##-##}", number);
+										Console.WriteLine("Please enter new phone number:");
 										PhoneNum = Console.ReadLine();
 										Console.WriteLine("Please enter new e-mail:");
 										Mail = Console.ReadLine();
@@ -150,7 +159,7 @@ namespace Task2
 								break;
 							}
 						}
-					case 0:
+					case 0: //выход из программы
 						{
 							Console.ForegroundColor = ConsoleColor.Green;
 							Console.WriteLine("Goodbay. Press any key to end programm.");
@@ -158,10 +167,6 @@ namespace Task2
 							Console.ReadKey();
 							return;
 						}
-					default:
-						Console.WriteLine("DEFAULT");
-						break;
-
 				}
 			}
 		}
