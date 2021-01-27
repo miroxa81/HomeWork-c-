@@ -5,21 +5,15 @@ namespace Task2
 {
 	class Program
 	{
-
 		static void Main(string[] args)
 		{
 			string[,] Note = new string[5, 2];
 			int select;
 			string Name, PhoneNum, Mail;
-			int count=0;
-
-
+			int count = 0;
 			Console.WriteLine("Hello. It's small notepad.");
-
 			while (true)
 			{
-
-
 				Console.WriteLine($"\n" +
 				$"========= MENU ==========\n" +
 				$"View notepad	- press 1\n" +
@@ -30,14 +24,12 @@ namespace Task2
 				$"=========================\n" +
 				$"Please select:");
 
-				while (int.TryParse(Console.ReadLine(), out select))
+				while (!int.TryParse(Console.ReadLine(), out select) || select < 0 || select > 4)
 				{
 					Console.WriteLine("Please select number from menu");
 				}
-
 				switch (select)
 				{
-
 					case 1:
 						{
 							if (count == 0)
@@ -63,7 +55,6 @@ namespace Task2
 								Console.WriteLine("Notepad is full. Please delete something.");
 								break;
 							}
-
 							Console.WriteLine("Please enter name:");
 							Name = Console.ReadLine();
 							Console.WriteLine("Please enter phone number:");                            //String.Format("{0:+# (###) ###-##-##}", number);
@@ -74,14 +65,10 @@ namespace Task2
 							Note[count, 1] = ($"{PhoneNum}/{Mail}");
 							count++;
 							break;
-
-
 						}
 					case 3:
 						{
-
 							Console.WriteLine("Please enter the name to be deleted:");
-
 							Name = Console.ReadLine();
 							if (count != 0)
 							{
@@ -89,24 +76,28 @@ namespace Task2
 								{
 									if (Note[i, 0] == Name)
 									{
-										if (i == Note.GetLength(0))
+										if (i == Note.GetLength(0) - 1)
 										{
 											Note[i, 0] = "";
 											Note[i, 1] = "";
+											count--;
+											//	break;
 										}
 										else
 										{
-											for (j = i; j < count; j++)
+											for (int j = i; j < Note.GetLength(0) - 1; j++)
 											{
 												Note[j, 0] = Note[j + 1, 0];
 												Note[j, 1] = Note[j + 1, 1];
-
 											}
-											break;
+											count--;
 										}
 									}
+									else
+									{
+										if (i == count - 1) { Console.WriteLine("Name not found!"); }
+									}
 								}
-								Console.WriteLine("Name not found!");
 								break;
 							}
 							else
@@ -156,12 +147,7 @@ namespace Task2
 						break;
 
 				}
-
-
 			}
-
-
 		}
 	}
-
 }
