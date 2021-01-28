@@ -34,16 +34,7 @@ namespace Task1
 			WriteDarkGreen("Input patronymic:");
 			Patronymic = Console.ReadLine();
 		}
-		static int ReadInt()
-		{
-			int number;
-			while (!int.TryParse(Console.ReadLine(), out number))
-			{
-				WriteDarkRed("Please input numerical data");
-				Console.WriteLine();
-			}
-			return number;
-		}
+
 		static string GetFullName(string FirstName, string LastName, string Patronymic)
 		{
 			return ($"{FirstName} {LastName} {Patronymic}");
@@ -80,6 +71,16 @@ namespace Task1
 			Console.Write(txt);
 			Console.ResetColor();
 
+		}
+		static int ReadInt()
+		{
+			int number;
+			while (!int.TryParse(Console.ReadLine(), out number))
+			{
+				WriteDarkRed("Please input numerical data");
+				Console.WriteLine();
+			}
+			return number;
 		}
 	}
 }
