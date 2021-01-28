@@ -6,7 +6,11 @@ namespace Task2
 	{
 		static void Main(string[] args)
 		{
-			Console.WriteLine("Hello World!");
+			Console.WriteLine("Input numbers separated by commas:");
+			string Line = Console.ReadLine();
+
+
+
 		}
 	}
 }
