@@ -120,7 +120,7 @@ namespace ConsoleApp3
 					}
 				}
 			}
-			Console.ForegroundColor = ConsoleColor.Yellow;
+			Console.ForegroundColor = ConsoleColor.DarkYellow;
 			Console.WriteLine($"The sum of the numbers of the selected diagonal: {DiagSum}.");
 			Console.ForegroundColor = ConsoleColor.Green;
 			Console.WriteLine($"Press any key to end program.");

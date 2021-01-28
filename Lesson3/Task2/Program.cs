@@ -32,6 +32,7 @@ namespace Task2
 					Console.WriteLine("Please select number from menu");
 					Console.ResetColor();
 				}
+
 				switch (select)
 				{
 					case 1: //вывод блокнта 
@@ -39,7 +40,9 @@ namespace Task2
 							if (count == 0)
 							{
 								Console.ForegroundColor = ConsoleColor.DarkYellow;
-								Console.WriteLine("You don't have any records");
+								Console.WriteLine("You don't have any records. Press any key to continue.");
+								Console.ReadKey();
+								Console.Clear();
 								Console.ResetColor();
 							}
 							else
@@ -51,6 +54,10 @@ namespace Task2
 									Console.WriteLine($"{Note[i, 0],-20}{Note[i, 1]}");
 								}
 								Console.WriteLine($"------------------------------------");
+								Console.WriteLine($"Press any key to continue.");
+								Console.ReadKey();
+								Console.Clear();
+
 							}
 							break;
 						}
@@ -58,8 +65,10 @@ namespace Task2
 						{
 							if (count > 5)
 							{
-
-								Console.WriteLine("Notepad is full. Please delete something.");
+								Console.ForegroundColor = ConsoleColor.DarkYellow;
+								Console.WriteLine("Notepad is full. Please delete something. Press any key to continue.");
+								Console.ReadKey();
+								Console.Clear();
 								Console.ResetColor();
 								break;
 							}
@@ -72,6 +81,10 @@ namespace Task2
 							Note[count, 0] = Name;
 							Note[count, 1] = ($"{PhoneNum}/{Mail}");
 							count++;
+							Console.ForegroundColor = ConsoleColor.DarkYellow;
+							Console.WriteLine($"Record adding to notepad. Press any key to continue.");
+							Console.ReadKey();
+							Console.Clear();
 							break;
 						}
 					case 3: //удаление 
@@ -109,7 +122,15 @@ namespace Task2
 									}
 									else
 									{
-										if (i == count - 1) { Console.WriteLine("Name not found!"); }
+										if (i == count - 1)
+										{
+											Console.ForegroundColor = ConsoleColor.DarkYellow;
+											Console.WriteLine("Name not found! Press any key to continue.");
+											Console.ReadKey();
+											Console.Clear();
+											Console.ResetColor();
+										}
+
 									}
 								}
 								break;
@@ -117,7 +138,9 @@ namespace Task2
 							else
 							{
 								Console.ForegroundColor = ConsoleColor.DarkYellow;
-								Console.WriteLine("Notepad is empty. Nothing to delete.");
+								Console.WriteLine("Notepad is empty. Nothing to delete. Press any key to continue.");
+								Console.ReadKey();
+								Console.Clear();
 								Console.ResetColor();
 								break;
 							}
@@ -145,16 +168,32 @@ namespace Task2
 										Mail = Console.ReadLine();
 										Note[i, 0] = Name;
 										Note[i, 1] = ($"{PhoneNum}/{Mail}");
+										Console.ForegroundColor = ConsoleColor.DarkYellow;
+										Console.WriteLine($"Record changed in the notepad. Press any key to continue.");
+										Console.ReadKey();
+										Console.Clear();
 										break;
 									}
+									else
+									{
+										if (i == count - 1)
+										{
+											Console.ForegroundColor = ConsoleColor.DarkYellow;
+											Console.WriteLine("Name not found! Press any key to continue.");
+											Console.ReadKey();
+											Console.Clear();
+											Console.ResetColor();
+										}
+									}
 								}
-								Console.WriteLine("Name not found!");
 								break;
 							}
 							else
 							{
 								Console.ForegroundColor = ConsoleColor.DarkYellow;
-								Console.WriteLine("Notepad is empty. Nothing to change.");
+								Console.WriteLine("Notepad is empty. Nothing to change. Press any key to continue.");
+								Console.ReadKey();
+								Console.Clear();
 								Console.ResetColor();
 								break;
 							}
