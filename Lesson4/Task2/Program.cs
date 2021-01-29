@@ -8,8 +8,13 @@ namespace Task2
 		{
 			Console.WriteLine("Input numbers separated by space:");
 			string number ="";
-			string Line = "12 33 43 2 1 3 5 76 -3 12 5";
+			ConsoleKeyInfo PressedKey;
+
+			//string Line = "12 33 43 2 1 3 5 76 -3 12 5";
 			int sum=0;
+			//char ch = ' ';
+
+			string Line = Console.ReadLine().Split(new char ch = "{' '}");
 
 			for (int i = 0; i < Line.Length; i++)
 			{
