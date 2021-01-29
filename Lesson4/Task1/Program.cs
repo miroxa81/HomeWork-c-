@@ -44,7 +44,7 @@ namespace Task1
 			Console.WriteLine("All users:");
 			for (int i = 0; i < Data.GetLength(0); i++)
 			{
-				WriteDarkYellow($"User #{i + 1}.");
+				WriteDarkYellow($"User #{i + 1}");
 				WriteDarkGreen($" {Data[i]}");
 				Console.WriteLine();
 			}

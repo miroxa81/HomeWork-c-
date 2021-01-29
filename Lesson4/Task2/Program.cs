@@ -7,36 +7,34 @@ namespace Task2
 		static void Main(string[] args)
 		{
 			Console.WriteLine("Input numbers separated by space:");
-			string number ="";
 			ConsoleKeyInfo PressedKey;
 
-			//string Line = "12 33 43 2 1 3 5 76 -3 12 5";
-			int sum=0;
-			//char ch = ' ';
+			float sum = 0;
 
-			string Line = Console.ReadLine().Split(new char ch = "{' '}");
+			string[] Line = Console.ReadLine().Split(new char[] { ' ' });
 
+			total(Line, ref sum);
+
+			WriteDarkGreen($"{Convert.ToString(sum)}");
+		}
+		static void total(string[] Line, ref float sum)
+		{
+			string unit;
 			for (int i = 0; i < Line.Length; i++)
 			{
-				if (!char.IsWhiteSpace(Line[i]))
+				unit = Line[i];
+
+				if (float.TryParse(unit, out float number))
 				{
-					number += Line[i];
-				}
-				else
-				{
-					sum += int.Parse(number);
-					number = "";
+					sum += number;
 				}
 			}
-			WriteDarkGreen($"{sum}");
 		}
-
 		static void WriteDarkGreen(string txt)
 		{
 			Console.ForegroundColor = ConsoleColor.DarkGreen;
 			Console.Write(txt);
 			Console.ResetColor();
-
 		}
 	}
 }
