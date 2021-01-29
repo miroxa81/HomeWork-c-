@@ -11,7 +11,11 @@ namespace Task2
 
 			float sum = 0;
 
+<<<<<<< HEAD
+			string[] Line = Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+=======
 			string[] Line = Console.ReadLine().Split(new char[] { ' ' });
+>>>>>>> Lesson4
 
 			total(Line, ref sum);
 
