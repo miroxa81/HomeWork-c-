@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace Task1
 {
@@ -6,7 +7,16 @@ namespace Task1
 	{
 		static void Main(string[] args)
 		{
-			Console.WriteLine("Hello World!");
+			string FileName = "startup.txt";
+
+			File.WriteAllText(FileName, getData());
+			File.AppendAllText(FileName, Environment.NewLine);
 		}
+
+		static string getData()
+		{
+			return Console.ReadLine();
+		}
+
 	}
 }
