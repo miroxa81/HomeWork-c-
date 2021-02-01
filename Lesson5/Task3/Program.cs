@@ -23,7 +23,7 @@ namespace Task3
 			bool isOk=true;
 			string unit;
 			
-			string [] InputLine = Console.ReadLine().Split(new char[] { ' ' });
+			string [] InputLine = Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 			byte[] ArrayByte = new byte[InputLine.Length];
 			
 			for (int i = 0; i < InputLine.Length; i++)
