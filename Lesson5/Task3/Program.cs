@@ -7,76 +7,52 @@ namespace Task3
 	{
 		static void Main(string[] args)
 		{
-			//string Line;
-			//bool isOk;
-			//int lenght;
-
-			WriteColor($"Введите набор цифр от 0 до 255:", ConsoleColor.Gray);
-			
-			byte[] Array = getData();
-
-			
-			File.WriteAllBytes($"byte.bin", getData());
-			
+			WriteColor($"Введите через пробел набор цифр от 0 до 255:", ConsoleColor.Gray);
+			if (CreateByteBin() && File.Exists("byte.bin"))
+			{
+				WriteColor($"Файл byte.bin успешно создан", ConsoleColor.Green);
+			}
+			else
+			{
+				WriteColor($"Вы ввели недопустимые данные. Файл byte.bin не созднан", ConsoleColor.Red);
+			}
 		}
 
-
-
-
-
-
-		static byte[]  getData()
-		{			
-			string [] InputLine = Console.ReadLine().Split(new char[] { ' ' });
-			byte[] Array = new byte[InputLine.Length];
+		static bool CreateByteBin()
+		{
+			bool isOk=true;
 			string unit;
+			
+			string [] InputLine = Console.ReadLine().Split(new char[] { ' ' });
+			byte[] ArrayByte = new byte[InputLine.Length];
+			
 			for (int i = 0; i < InputLine.Length; i++)
 			{
 				unit = InputLine[i];
 				if (byte.TryParse(unit, out byte N))
 				{
-					Array[i] = N;
+					ArrayByte[i] = N;
 				}
 				else
 				{
-					WriteColor("Вы ввели информцию не удовлетворяющую условию", ConsoleColor.Red);
-					break;
+					isOk = false;
 				}
 			}
-			return Array;
+			if (isOk) 
+			{
+				File.WriteAllBytes($"byte.bin", ArrayByte);
+				return true;
 			}
-	
-
-
+			else
+			{
+				return false;
+			}
+		}
 		static void WriteColor(string txt, ConsoleColor color)
 		{
 			Console.ForegroundColor = color;
 			Console.Write(txt);
 			Console.ResetColor();
-		}
-
-		static bool isDigit()
-		{
-			while (true)
-				{
-				
-				ConsoleKeyInfo keyPress = Console.ReadKey(true);
-			char input = keyPress.KeyChar;
-
-				if (char.IsLetter(input))
-				{
-					WriteColor("Можно вводить только цифры! Начните ввод сначала!", ConsoleColor.Red);
-
-					break;
-				}
-
-				if (char.IsDigit(input))
-				{
-					//string[] Line = Line + input;
-				}		
-
-			}
-			return false;
 		}
 	}
 }
