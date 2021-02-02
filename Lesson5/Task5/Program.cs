@@ -1,18 +1,46 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Task5
 {
 	class Program
 	{
+		
 		static void Main(string[] args)
 		{
-			Console.WriteLine("Hello World!");
-			Notepad[] ToDo = new Notepad();
+	
+
+		List<Notepad> list = new List<Notepad>();
+			Notepad Task = new Notepad();
+			
+/*
+			for (int i = 0; i < 2; i++)
+			{
+				Task.SetTitle(Console.ReadLine());
+				Task.ChangeDate(DateTime.Now);
+				Task.ChangeStatus(true, DateTime.Now);
+				list.Add(Task);
+			}
+
+				string json = JsonSerializer.Serialize(list);
+				File.AppendAllText("todo.json", json);
+	
+*/
+
+					string json = File.ReadAllText("todo.json");
 
 
+					 list = JsonSerializer.Deserialize<Notepad>(json);
 
+
+					Console.WriteLine(lst);	
 
 		}
+
 
 		static void Init()
 		{
