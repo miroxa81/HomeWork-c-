@@ -13,6 +13,10 @@ namespace Task5
 
 		public Notepad()
 		{
+			Title = "";
+			Status = false;
+			CurrentDate = DateTime.Now;
+
 		}
 		public Notepad(string title, bool status, DateTime currentDate)
 		{
@@ -21,25 +25,17 @@ namespace Task5
 			CurrentDate = currentDate;
 		}
 
-		public void ChangeStatus(bool status, DateTime currentDate)
+		public bool ChangeStatus(bool status)
 		{
 			if (status == true)
 			{
-				status = false;
+				return  false;
 			}
 			else
 			{
-				status = true;
+				return  true;
 			}
 		}
-		public void ChangeDate(DateTime currentDate)
-		{ 
-			CurrentDate = currentDate; 
-		}
 
-		public void SetTitle(string title)
-		{
-			Title = title;
-		}
 	}
 }
