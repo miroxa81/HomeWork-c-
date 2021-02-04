@@ -9,6 +9,8 @@ namespace Task5
 {
 	class Program
 	{
+
+		public const string FileName = "ToDo.json";
 		static void Main(string[] args)
 		{
 			WriteLineColor("Hello. It's small notepad.", ConsoleColor.Yellow);
@@ -36,13 +38,44 @@ namespace Task5
 						{
 							Notepad newTask = AddNewTask();
 							UpLoadOneTask(newTask);
-							Tasks = Init();
-							UpLoadAllTask(Tasks);
+
+//							Tasks = Init();
+//							UpLoadAllTask(Tasks);
 
 							break;
 						}
 					case 3:
 						{
+							Tasks = Init();
+							bool isRepaet;
+							Notepad[] TasksWODel = new Notepad[Tasks.Length - 1];
+							WriteLineColor("Please input task number wich you want delete:", ConsoleColor.DarkYellow);
+							do
+							{
+								if (!int.TryParse(Console.ReadLine(), out int i))
+								{
+									WriteLineColor("Please input task number wich you want delete:", ConsoleColor.DarkYellow);
+									isRepaet = true;
+								}
+								else
+								{
+									for (int j = 0; j < TasksWODel.Length; j++)
+									{
+										if (j < i-1)
+										{
+											TasksWODel[j] = Tasks[j];
+										}
+										else
+										{
+											TasksWODel[j] = Tasks[j+1];
+										}
+
+									}
+									isRepaet = false;
+								}
+							} while (isRepaet);
+
+							UpLoadAllTask(TasksWODel);
 
 							break;
 						}
@@ -60,29 +93,21 @@ namespace Task5
 								}
 								else
 								{
-									Tasks[i].Status = Tasks[i].ChangeStatus(Tasks[i].Status); ;
-									isRepaet = false; 
+									Tasks[i - 1].Status = Tasks[i - 1].ChangeStatus(Tasks[i - 1].Status); ;
+									isRepaet = false;
 								}
 							} while (isRepaet);
 
 							UpLoadAllTask(Tasks);
-							
-							break; }
 
-
-
+							break;
+						}
 				}
-
-
 			} while (true);
-
 		}
-
-
 		static Notepad AddNewTask()
 		{
-			ConsoleKeyInfo kp;
-			bool isRepeat = default;
+			bool isRepeat;
 			Notepad newTask = new Notepad();
 
 			WriteLineColor("Please input task title", ConsoleColor.DarkYellow);
@@ -90,7 +115,6 @@ namespace Task5
 			do
 			{
 				WriteLineColor("Please input task date", ConsoleColor.DarkYellow);
-				WriteColor("Enter the desired date:", ConsoleColor.DarkYellow);
 				if (DateTime.TryParse(Console.ReadLine(), out DateTime CurDate))
 				{
 					newTask.CurrentDate = CurDate;
@@ -113,7 +137,7 @@ namespace Task5
 			WriteColor("Status", ConsoleColor.White);
 			WriteColor("    Date    ", ConsoleColor.White);
 			WriteLineColor("Title", ConsoleColor.White);
-			WriteLineColor("-------------------------", ConsoleColor.White);
+			WriteLineColor("--------------------------", ConsoleColor.White);
 
 			for (int i = 0; i < Tasks.Length; i++)
 			{
@@ -141,23 +165,33 @@ namespace Task5
 		{
 			var options = new JsonSerializerOptions
 			{
-				ReadCommentHandling = JsonCommentHandling.Skip,
+				IgnoreNullValues = true,
 				AllowTrailingCommas = true,
 			};
-
-			Notepad[] ToDo = JsonSerializer.Deserialize<Notepad[]>($"{File.ReadAllText("ToDo.json")}", options);
-			return ToDo;
+			if (File.Exists(FileName))
+			{
+				Notepad[] ToDo = JsonSerializer.Deserialize<Notepad[]>($"[{File.ReadAllText(FileName)}]", options);
+				return ToDo;
+			}
+			else
+			{
+				File.WriteAllText(FileName, "");
+				Notepad[] ToDo = JsonSerializer.Deserialize<Notepad[]>($"[{File.ReadAllText(FileName)}]", options);
+				return ToDo;
+			}
 		}
 
 		static void UpLoadOneTask(Notepad Task)
 		{
 			string json = JsonSerializer.Serialize(Task);
-			File.AppendAllText("ToDo.json", json+",");
+			File.AppendAllText(FileName, json + ",");
 		}
-		static void UpLoadAllTask(Notepad [] Tasks)
+		static void UpLoadAllTask(Notepad[] Tasks)
 		{
 			string json = JsonSerializer.Serialize(Tasks);
-			File.WriteAllText("ToDo.json", json);		
+			string temp = json;
+			json = temp.Substring(1, temp.Length - 2);
+			File.WriteAllText(FileName, json + ",");
 		}
 
 		static int Menu()
