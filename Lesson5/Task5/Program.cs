@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
-using System.Text.Json.Serialization;
+
 
 namespace Task5
 {
@@ -47,6 +45,11 @@ namespace Task5
 					case 3:
 						{
 							Tasks = Init();
+							if (Tasks.Length == 0)
+							{
+								WriteLineColor("Nothing to delete!",ConsoleColor.DarkRed);
+								break;
+							}
 							bool isRepaet;
 							Notepad[] TasksWODel = new Notepad[Tasks.Length - 1];
 							WriteLineColor("Please input task number wich you want delete:", ConsoleColor.DarkYellow);
@@ -76,12 +79,17 @@ namespace Task5
 							} while (isRepaet);
 
 							UpLoadAllTask(TasksWODel);
-
+							Console.Clear();
 							break;
 						}
 					case 4:
 						{
 							Tasks = Init();
+							if (Tasks.Length == 0)
+							{
+								WriteLineColor("Nothing to change!", ConsoleColor.DarkRed);
+								break;
+							}
 							bool isRepaet;
 							WriteLineColor("Please input number of completed task", ConsoleColor.DarkYellow);
 							do
@@ -99,7 +107,7 @@ namespace Task5
 							} while (isRepaet);
 
 							UpLoadAllTask(Tasks);
-
+							Console.Clear();
 							break;
 						}
 				}
@@ -191,7 +199,14 @@ namespace Task5
 			string json = JsonSerializer.Serialize(Tasks);
 			string temp = json;
 			json = temp.Substring(1, temp.Length - 2);
-			File.WriteAllText(FileName, json + ",");
+			if (Tasks.Length == 0)
+			{
+				File.WriteAllText(FileName, json);
+			}
+			else
+			{
+				File.WriteAllText(FileName, json + ",");
+			}
 		}
 
 		static int Menu()
